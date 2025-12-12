@@ -153,18 +153,35 @@ def list_keys():
     db = storage.load_db()
     keys_with_expiry = []
     
-    for key_data in db:
+    # ✅ FIXED: Handle both dict AND array (CRASH FIX!)
+    if isinstance(db, list):
+        # Old array format → convert to dict
+        db_dict = {item.get('key', f'key_{i}'): item for i, item in enumerate(db)}
+    elif isinstance(db, dict):
+        db_dict = db
+    else:
+        db_dict = {}
+    
+    for key, key_data in db_dict.items():
+        # ✅ SAFE: Check if key_data is dict
+        if not isinstance(key_data, dict):
+            continue
+            
         if 'expires' in key_data and key_data['expires']:
-            expiry = datetime.fromisoformat(key_data['expires'])
-            days_left = max(0, (expiry - datetime.now()).days)
+            try:
+                expiry = datetime.fromisoformat(key_data['expires'])
+                days_left = max(0, (expiry - datetime.now()).days)
+            except:
+                days_left = 0
         else:
             days_left = 0
             
         keys_with_expiry.append({
             **key_data,
+            "key": key,
             "days_left": days_left,
-            "last_ip": key_data.get("last_ip", "N/A"),      # 👈 SHOW LAST IP
-            "last_hwid": key_data.get("hwid", "N/A")        # 👈 SHOW LAST HWID
+            "last_ip": key_data.get("last_ip", key_data.get("ip", "N/A")),
+            "last_hwid": key_data.get("hwid", key_data.get("client_hwid", "N/A"))
         })
     
     return jsonify({
