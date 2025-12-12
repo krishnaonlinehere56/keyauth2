@@ -1,0 +1,983 @@
+[
+    {
+        "time": "2025-12-12T10:18:33.478665",
+        "event": "generate",
+        "key": "sbDjHzSD1zxQYFDA2qz+xw==",
+        "info": {
+            "username": "krishna94__00",
+            "plan": "BASIC"
+        }
+    },
+    {
+        "time": "2025-12-12T10:18:45.504788",
+        "event": "delete",
+        "key": "9ikQeDjlYG2t3ValdCxxbA==",
+        "info": {}
+    },
+    {
+        "time": "2025-12-12T10:18:47.981019",
+        "event": "delete",
+        "key": "EHxvz9NItg8Gv8WqX/OOCw==",
+        "info": {}
+    },
+    {
+        "time": "2025-12-12T10:18:52.170039",
+        "event": "delete",
+        "key": "sbDjHzSD1zxQYFDA2qz+xw==",
+        "info": {}
+    },
+    {
+        "time": "2025-12-12T10:23:13.349855",
+        "event": "verify",
+        "key": "hello",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:15.484565",
+        "event": "verify",
+        "key": "hello",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:16.120604",
+        "event": "verify",
+        "key": "hello",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:16.304902",
+        "event": "verify",
+        "key": "hello",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:16.474807",
+        "event": "verify",
+        "key": "hello",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:18.414792",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:19.615464",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:19.784469",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:19.924655",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:20.104750",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:20.281310",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:20.596625",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:20.917107",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:21.091476",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:21.244472",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:21.406566",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:21.604685",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:21.797329",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:21.974844",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:22.148244",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:22.334962",
+        "event": "verify",
+        "key": "hello990",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:35.415866",
+        "event": "verify",
+        "key": "sbDjHzSD1zxQYFDA2qz+xw==",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:36.114789",
+        "event": "verify",
+        "key": "sbDjHzSD1zxQYFDA2qz+xw==",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:36.554518",
+        "event": "verify",
+        "key": "sbDjHzSD1zxQYFDA2qz+xw==",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:23:45.584870",
+        "event": "generate",
+        "key": "XLjN3v7HML6aQdEG7ssYWQ==",
+        "info": {
+            "username": "krishna",
+            "plan": "BASIC"
+        }
+    },
+    {
+        "time": "2025-12-12T10:24:01.967710",
+        "event": "verify",
+        "key": "XLjN3v7HML6aQdEG7ssYWQ==",
+        "info": {
+            "status": "success"
+        }
+    },
+    {
+        "time": "2025-12-12T10:24:29.142146",
+        "event": "generate",
+        "key": "8xEWdByGiCj2u2uDo1cNaQ==",
+        "info": {
+            "username": "krishna11",
+            "plan": "BASIC"
+        }
+    },
+    {
+        "time": "2025-12-12T10:25:14.284648",
+        "event": "verify",
+        "key": ";bi vujoijfo",
+        "info": {
+            "status": "invalid"
+        }
+    },
+    {
+        "time": "2025-12-12T10:25:44.146567",
+        "event": "generate",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "username": "AARTI KUMARI",
+            "plan": "BASIC"
+        }
+    },
+    {
+        "time": "2025-12-12T10:25:53.776822",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "success"
+        }
+    },
+    {
+        "time": "2025-12-12T10:37:49.729145",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "max_uses"
+        }
+    },
+    {
+        "time": "2025-12-12T10:37:56.090711",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:37:56.273751",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:37:56.755037",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:37:56.958154",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:38:11.621989",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:38:12.164603",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:38:12.745804",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:38:21.807679",
+        "event": "generate",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "username": "AARTI KUMARI",
+            "plan": "BASIC"
+        }
+    },
+    {
+        "time": "2025-12-12T10:38:25.759274",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "success"
+        }
+    },
+    {
+        "time": "2025-12-12T10:38:39.310528",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "max_uses"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:20.444782",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:22.132876",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:22.701895",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:22.874614",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:23.058620",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:23.236095",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:23.428642",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:23.577305",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:23.744728",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:23.892652",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:24.232808",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:24.354542",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:24.536376",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:45:24.710583",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned"
+        }
+    },
+    {
+        "time": "2025-12-12T10:53:48.732846",
+        "event": "generate",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "username": "User",
+            "plan": "BASIC"
+        }
+    },
+    {
+        "time": "2025-12-12T10:54:00.271989",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:54:44.374841",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:54:54.776451",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:55:02.654745",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:55:10.246608",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:55:17.514722",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:55:56.086860",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:56:02.877382",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:56:11.674891",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ=",
+        "info": {
+            "status": "invalid",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:56:13.826445",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:56:21.428968",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:56:31.649881",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "max_uses",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:56:41.442674",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:56:41.949517",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:56:42.114646",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:56:42.380698",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:56:42.557354",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:56:43.004434",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:56:43.171783",
+        "event": "verify",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:57:09.095798",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:57:09.945810",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:57:10.177562",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:57:10.470800",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:57:10.627707",
+        "event": "verify",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:57:18.379358",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:57:18.935752",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:57:19.167419",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:57:19.330698",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T10:57:19.710552",
+        "event": "verify",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T11:05:07.979105",
+        "event": "delete",
+        "key": "8xEWdByGiCj2u2uDo1cNaQ==",
+        "info": {}
+    },
+    {
+        "time": "2025-12-12T11:05:11.194759",
+        "event": "delete",
+        "key": "QZLvu+aiDSSYZR4drQYBKw==",
+        "info": {}
+    },
+    {
+        "time": "2025-12-12T11:05:13.107957",
+        "event": "delete",
+        "key": "Sdp6rWmaaYl6hFPMuLahxw==",
+        "info": {}
+    },
+    {
+        "time": "2025-12-12T11:05:16.087769",
+        "event": "delete",
+        "key": "XLjN3v7HML6aQdEG7ssYWQ==",
+        "info": {}
+    },
+    {
+        "time": "2025-12-12T11:05:18.330808",
+        "event": "delete",
+        "key": "wYsCpYn2pKE93ACa5xB1bQ==",
+        "info": {}
+    },
+    {
+        "time": "2025-12-12T11:05:22.189891",
+        "event": "generate",
+        "key": "CAjRVMubD0UBW4Ih+V/tvw==",
+        "info": {
+            "username": "Sinu96__0",
+            "plan": "BASIC"
+        }
+    },
+    {
+        "time": "2025-12-12T11:05:33.270717",
+        "event": "verify",
+        "key": "CAjRVMubD0UBW4Ih+V/tvw==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T11:05:50.674582",
+        "event": "delete",
+        "key": "CAjRVMubD0UBW4Ih+V/tvw==",
+        "info": {}
+    },
+    {
+        "time": "2025-12-12T11:05:54.814667",
+        "event": "verify",
+        "key": "CAjRVMubD0UBW4Ih+V/tvw==",
+        "info": {
+            "status": "invalid",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T11:08:05.749933",
+        "event": "generate",
+        "key": "66dVAEQs3OoHyBwpUw1RBg==",
+        "info": {
+            "username": "Sinu96__0",
+            "plan": "BASIC"
+        }
+    },
+    {
+        "time": "2025-12-12T11:11:10.383708",
+        "event": "generate",
+        "key": "zT9q1dllx+gN7Tm9sq52tQ==",
+        "info": {
+            "username": "CHORXKHUSI",
+            "plan": "BASIC"
+        }
+    },
+    {
+        "time": "2025-12-12T12:46:18.583142",
+        "event": "generate",
+        "key": "htY11ZHvWZHcGz5W3t+TrQ==",
+        "info": {
+            "username": "helloo",
+            "plan": "BASIC"
+        }
+    },
+    {
+        "time": "2025-12-12T12:46:43.572686",
+        "event": "verify",
+        "key": "knojoaofofq",
+        "info": {
+            "status": "invalid",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T12:46:47.391996",
+        "event": "verify",
+        "key": "htY11ZHvWZHcGz5W3t+TrQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T12:48:14.402731",
+        "event": "verify",
+        "key": "htY11ZHvWZHcGz5W3t+TrQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T12:48:28.271409",
+        "event": "verify",
+        "key": "htY11ZHvWZHcGz5W3t+TrQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T12:48:38.070949",
+        "event": "verify",
+        "key": "htY11ZHvWZHcGz5W3t+TrQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T12:48:45.306556",
+        "event": "verify",
+        "key": "htY11ZHvWZHcGz5W3t+TrQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T12:48:52.978850",
+        "event": "verify",
+        "key": "htY11ZHvWZHcGz5W3t+TrQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T12:49:00.876717",
+        "event": "verify",
+        "key": "htY11ZHvWZHcGz5W3t+TrQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T12:49:09.265348",
+        "event": "verify",
+        "key": "htY11ZHvWZHcGz5W3t+TrQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T12:49:16.760374",
+        "event": "verify",
+        "key": "htY11ZHvWZHcGz5W3t+TrQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T12:49:23.978746",
+        "event": "verify",
+        "key": "htY11ZHvWZHcGz5W3t+TrQ==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T12:49:48.253341",
+        "event": "verify",
+        "key": "htY11ZHvWZHcGz5W3t+TrQ==",
+        "info": {
+            "status": "max_uses",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T12:49:56.204247",
+        "event": "verify",
+        "key": "htY11ZHvWZHcGz5W3t+TrQ==",
+        "info": {
+            "status": "banned",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T13:22:31.515119",
+        "event": "generate",
+        "key": "kQAgWFQnGbovCErtje6Xcg==",
+        "info": {
+            "username": "User",
+            "plan": "BASIC"
+        }
+    },
+    {
+        "time": "2025-12-12T13:23:57.141684",
+        "event": "generate",
+        "key": "KEftRJIzRphM1WuNzzy4Pg==",
+        "info": {
+            "username": "User",
+            "plan": "BASIC"
+        }
+    },
+    {
+        "time": "2025-12-12T13:24:15.528287",
+        "event": "verify",
+        "key": "KEftRJIzRphM1WuNzzy4Pg==",
+        "info": {
+            "status": "success",
+            "ip": "127.0.0.1"
+        }
+    },
+    {
+        "time": "2025-12-12T13:29:09.705067",
+        "event": "delete",
+        "key": "KEftRJIzRphM1WuNzzy4Pg==",
+        "info": {}
+    }
+]

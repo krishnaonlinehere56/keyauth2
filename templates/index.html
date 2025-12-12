@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>KRISHNA X FEAR • KeyAuth Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    :root{
+        --bg1:#25345f; --bg2:#0b0f1d; --card:#0a0f1c;
+        --accent:#4cc9ff; --accent2:#9560ff; --muted:#7d8fb3;
+        --glass-border:rgba(120,180,255,.35);
+    }
+    html,body{height:100%;margin:0;font-family:'Inter',sans-serif;background:radial-gradient(circle at top,var(--bg1) 0%,var(--bg2) 60%,#03040b 100%);color:#e9f5ff}
+    /* common container */
+    .app-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px;gap:22px;position:relative}
+    /* global title */
+    .global-title-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:80;pointer-events:none}
+    .global-title{pointer-events:auto;font-family:'Orbitron',sans-serif;text-transform:uppercase;letter-spacing:.25em;font-size:1rem;padding:6px 20px;border-radius:999px;background:radial-gradient(circle at top,rgba(76,201,255,0.18),rgba(5,10,25,0.9));border:1px solid rgba(122,187,255,0.45);color:#e9f5ff;text-shadow:0 0 8px rgba(76,201,255,0.9);box-shadow:0 0 22px rgba(0,0,0,.9)}
+    /* glass card */
+    .glass-card{width:420px;max-width:calc(100% - 40px);background:linear-gradient(180deg,rgba(6,10,25,0.95),rgba(2,6,23,0.95));border-radius:14px;padding:18px;border:1px solid var(--glass-border);box-shadow:0 20px 50px rgba(0,0,0,.85);backdrop-filter:blur(6px)}
+    /* login */
+    .login-card{display:flex;flex-direction:column;gap:10px}
+    .login-brand{display:flex;justify-content:space-between;align-items:center}
+    .login-title{font-family:'Orbitron',sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:.85rem}
+    .login-title .krishna{color:var(--accent)} .login-title .fear{color:#ff6bcb} .login-title .auth{color:#d9e7ff}
+    .login-sub{font-size:.74rem;color:var(--muted)}
+    .pill{padding:4px 10px;border-radius:999px;font-size:.72rem;border:1px solid rgba(148,163,255,.6);color:#c7d2ff;background:rgba(15,23,42,0.9)}
+    .field-label{font-size:.78rem;color:#9eb3d8;margin-top:8px}
+    .login-input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(124,152,230,.7);background:rgba(2,6,23,.92);color:#e9f5ff;font-size:0.95rem;outline:none}
+    .login-input:focus{border-color:var(--accent);box-shadow:0 0 6px rgba(76,201,255,.25)}
+    .login-btn{width:100%;padding:10px;border-radius:999px;border:none;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#020617;font-weight:700;cursor:pointer;margin-top:8px}
+    .login-footer{display:flex;justify-content:space-between;font-size:.75rem;color:#8993a8;margin-top:8px}
+    .error{color:#ff6b81;font-size:.85rem}
+    /* panel styles (same as your panel file) */
+    .container{display:flex;flex-direction:column;gap:16px}
+    .auth-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .brand-title{font-family:'Orbitron',sans-serif;letter-spacing:.16em;text-transform:uppercase;font-size:0.9rem;color:#9fd5ff}
+    .brand-sub{font-size:.72rem;color:var(--muted)}
+    .status-pill{padding:4px 10px;border-radius:999px;font-size:0.72rem;text-transform:uppercase;border:1px solid rgba(77,255,136,.7);color:#4dff88;background:rgba(5,26,18,.85)}
+    h1,h2{margin:6px 0}
+    .subtitle{color:var(--muted);font-size:.9rem;margin-bottom:8px}
+    .form-group{display:flex;gap:8px;align-items:center}
+    .form-group input[type=text]{flex:1;padding:10px;border-radius:8px;border:1px solid rgba(116,154,230,.5);background:rgba(3,7,20,.9);color:#e9f5ff}
+    .hwid-toggle{font-size:.85rem;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+    .gen-btn{padding:10px 12px;border-radius:10px;border:none;background:linear-gradient(90deg,#4cc9ff,#9560ff);color:#020617;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+    .key-result{margin-top:12px;padding:10px;border-radius:8px;background:rgba(5,8,18,.5);border:1px solid rgba(120,180,255,.12)}
+    .key-display{display:flex;align-items:center;gap:8px}
+    .copy-btn{border:none;background:rgba(4,12,30,.9);border:1px solid rgba(116,154,230,.5);padding:6px;border-radius:8px;color:var(--accent);cursor:pointer}
+    .key-history{margin-top:8px}
+    .key-history-title{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px}
+    .key-history-list{max-height:90px;overflow-y:auto}
+    .key-history-item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:4px 0}
+    /* table */
+    .table-card{padding:12px}
+    .table-container{overflow:auto}
+    table{width:100%;border-collapse:collapse;color:#e9f5ff}
+    th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,.03);font-size:0.9rem;text-align:left}
+    .loading{text-align:center;color:var(--muted)}
+    .del-btn{background:none;border:none;color:#ff7b7b;cursor:pointer}
+    /* footer */
+    .footer-terms{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);font-size:.75rem;color:var(--muted)}
+    /* hide panel initially */
+    #panelWrap{display:none}
+    .hidden{display:none}
+    /* status message */
+    .status{position:relative;margin-top:8px;padding:8px;border-radius:8px;font-size:.9rem}
+    .status.success{background:rgba(17,68,25,.5);border:1px solid rgba(77,255,136,.12);color:#bff7d0}
+    .status.error{background:rgba(80,10,10,.45);border:1px solid rgba(255,100,100,.12);color:#ffd6d6}
+    @media (min-width:980px){.app-wrap{gap:32px}}
+</style>
+</head>
+<body>
+
+<div class="global-title-bar"><div class="global-title"><span class="accent">FEAR X CORPORATION</span> PANEL</div></div>
+
+<div class="app-wrap">
+
+    <!-- LOGIN CARD (visible by default) -->
+    <div class="glass-card login-card" id="loginWrap">
+        <div class="login-brand">
+            <div>
+                <div class="login-title"><span class="krishna">KRISHNA</span> <span class="fear">X FEAR</span> <span class="auth">AUTH</span></div>
+                <div class="login-sub">Owner panel login</div>
+            </div>
+            <div class="pill">KEYAUTH PANEL</div>
+        </div>
+
+        <div id="loginError" class="error hidden"></div>
+
+        <div class="field-label">Username</div>
+        <input id="loginUser" class="login-input" type="text" placeholder="Enter panel username">
+
+        <div class="field-label">Password</div>
+        <input id="loginPass" class="login-input" type="password" placeholder="Enter panel password">
+
+        <button id="loginBtn" class="login-btn">Login</button>
+
+        <div class="login-footer"><span>© 2025 KRISHNA X FEAR</span><a href="/">Back</a></div>
+    </div>
+
+    <!-- PANEL (hidden until login) -->
+    <div id="panelWrap" class="glass-card" aria-hidden="true">
+        <div class="auth-header">
+            <div>
+                <div class="brand-title">KRISHNA X FEAR AUTHENTICATION</div>
+                <div class="brand-sub">Secure license panel • KeyAuth</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px">
+                <a href="https://discord.gg/wUZYMSvUKZ" target="_blank" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#9fd5ff;font-size:0.82rem">
+                    <i class="fab fa-discord" style="font-size:1.1rem"></i><span>Discord</span>
+                </a>
+                <div class="status-pill"><i class="fas fa-shield-halved"></i> STATUS ONLINE</div>
+            </div>
+        </div>
+
+        <h1><i class="fas fa-key"></i> License Console</h1>
+        <p class="subtitle">Generate & manage your access keys</p>
+
+        <div class="form-group">
+            <input id="username" type="text" placeholder=" Username here" maxlength="20">
+            <label class="hwid-toggle"><input id="hwidLock" type="checkbox"> <i class="fas fa-lock"></i> HWID Lock</label>
+        </div>
+
+        <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+            <button id="genBtn" class="gen-btn"><i class="fas fa-magic"></i> <span>Generate Key</span></button>
+            <button id="logoutBtn" class="gen-btn" style="background:linear-gradient(90deg,#ff6b6b,#ffb86b);">Logout</button>
+        </div>
+
+        <div id="keyResult" class="key-result hidden">
+            <div class="key-display">
+                <span id="generatedKey" style="font-family:monospace;font-weight:700"></span>
+                <button id="copyBtn" class="copy-btn"><i class="fas fa-copy"></i></button>
+            </div>
+            <div class="key-info" style="margin-top:6px;color:var(--muted)">
+                <span id="keyUsername"></span> |
+                <span id="keyHWID" class="hwid-badge"></span>
+            </div>
+
+            <div class="key-history">
+                <div class="key-history-title">LAST GENERATED KEYS</div>
+                <div id="keyHistoryList" class="key-history-list"></div>
+            </div>
+        </div>
+
+        <div class="table-card" style="margin-top:12px">
+            <h2><i class="fas fa-list"></i> Active Keys</h2>
+            <div class="table-container">
+                <table id="keysTable">
+                    <thead><tr><th>Key</th><th>User</th><th>HWID</th><th>Uses</th><th>Actions</th></tr></thead>
+                    <tbody><tr><td colspan="5" class="loading">Loading keys...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-terms">© 2025 KRISHNA X FEAR •</div>
+
+<script>
+/* ========== CONFIG ========== */
+const BASE_URL = "http://localhost:5000";   // change to your deployed panel URL if needed
+const API_HEADERS = {
+    "Content-Type": "application/json",
+    "X-Owner-Id": "jkl4drh6",
+    "X-Secret": "ioyskcnwtdnzoexisns",
+    "X-Api-Key": "panel_789"
+};
+/* ============================ */
+
+/* Hard-coded panel creds (as you gave) */
+const VALID_USER = "778899";
+const VALID_PASS = "998877";
+
+/* auth flag - stored in sessionStorage */
+function setAuth(val){ sessionStorage.setItem("kx_auth", val ? "1":"0"); }
+function isAuth(){ return sessionStorage.getItem("kx_auth")==="1"; }
+function clearAuth(){ sessionStorage.removeItem("kx_auth"); }
+
+/* UI refs */
+const loginWrap = document.getElementById("loginWrap");
+const panelWrap = document.getElementById("panelWrap");
+const loginUser = document.getElementById("loginUser");
+const loginPass = document.getElementById("loginPass");
+const loginBtn = document.getElementById("loginBtn");
+const loginError = document.getElementById("loginError");
+const logoutBtn = document.getElementById("logoutBtn");
+
+/* Elements for panel */
+const genBtn = document.getElementById("genBtn");
+const usernameInput = document.getElementById("username");
+const hwidLockInput = document.getElementById("hwidLock");
+const keyResult = document.getElementById("keyResult");
+const generatedKey = document.getElementById("generatedKey");
+const keyUsername = document.getElementById("keyUsername");
+const keyHWID = document.getElementById("keyHWID");
+const copyBtn = document.getElementById("copyBtn");
+const keyHistoryList = document.getElementById("keyHistoryList");
+const keysTableBody = document.querySelector("#keysTable tbody");
+
+let keyHistory = [];
+let keysData = {};
+
+/* ===== Devtools & UI hardening ===== */
+(function protection(){
+    // Disable right click
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    // Disable popular keys
+    document.onkeydown = function(e){
+        // F12, Ctrl+Shift+I/J/C, Ctrl+U
+        if(e.keyCode===123) return false;
+        if(e.ctrlKey && e.shiftKey && (e.keyCode===73 || e.keyCode===74 || e.keyCode===67)) return false;
+        if(e.ctrlKey && e.keyCode===85) return false;
+    };
+
+    // Detect console open (soft)
+    (function(){
+        let opened = false;
+        const check = function(){
+            const start = Date.now();
+            debugger; // cheap detection
+            const took = Date.now() - start;
+            if(took > 100){ // heuristics: if devtools open, time jumps
+                if(!opened){ opened = true; lockScreen("⚠ Developer tools detected — panel locked."); }
+            }
+        };
+        setInterval(check, 1500);
+    })();
+
+    // Page blur lock (when tab lost focus)
+    window.addEventListener("blur", () => {
+        if(!isAuth()) return;
+        lockScreen("⚠ Security Triggered — Page reload required.");
+    });
+
+    // lockScreen: wipe UI and force reload (soft protective)
+    function lockScreen(msg){
+        document.body.innerHTML = `<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#02030a;color:#ff6b6b;font-family:Inter,Arial;"><h2>${msg}</h2></div>`;
+        setTimeout(()=>location.reload(), 2500);
+    }
+})();
+
+/* ===== View control ===== */
+function showPanel(){
+    loginWrap.style.display = "none";
+    panelWrap.style.display = "block";
+    panelWrap.removeAttribute("aria-hidden");
+    setAuth(true);
+    loadKeys(); // initial load
+}
+function showLogin(){
+    loginWrap.style.display = "block";
+    panelWrap.style.display = "none";
+    panelWrap.setAttribute("aria-hidden","true");
+    clearAuth();
+}
+
+/* Init UI state from session */
+if(isAuth()){
+    showPanel();
+} else {
+    showLogin();
+}
+
+/* ===== Login logic ===== */
+loginBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    loginError.classList.add("hidden");
+    const user = String(loginUser.value || "").trim();
+    const pass = String(loginPass.value || "").trim();
+    if(!user || !pass){ loginError.textContent="Enter username & password"; loginError.classList.remove("hidden"); return; }
+
+    // simple client-side check (you provided creds)
+    if(user === VALID_USER && pass === VALID_PASS){
+        loginUser.value = ""; loginPass.value = "";
+        showPanel();
+    } else {
+        loginError.textContent = "Invalid credentials"; loginError.classList.remove("hidden");
+    }
+});
+
+/* Logout */
+logoutBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    clearAuth();
+    showLogin();
+});
+
+/* ===== Utility: show status messages ===== */
+function showStatus(msg, type="success"){
+    const s = document.createElement("div");
+    s.className = `status ${type==="success"?"success":"error"}`;
+    s.textContent = msg;
+    const card = panelWrap;
+    card.appendChild(s);
+    setTimeout(()=>s.remove(), 3000);
+}
+
+/* ===== API wrappers (only work when authenticated) ===== */
+function headers(){ return API_HEADERS; }
+
+async function api_create_key(name, hwid_lock=false){
+    if(!isAuth()) throw new Error("Not authenticated");
+    const payload = { username: name, plan: "BASIC", days: 30, max_uses: 1, hwid_lock };
+    const resp = await fetch(BASE_URL + "/generate", { method: "POST", headers: headers(), body: JSON.stringify(payload) });
+    return resp.json();
+}
+async function api_delete_key(key){
+    if(!isAuth()) throw new Error("Not authenticated");
+    const resp = await fetch(BASE_URL + "/delete", { method: "POST", headers: headers(), body: JSON.stringify({ key }) });
+    return resp.json();
+}
+async function api_list_keys(){
+    if(!isAuth()) throw new Error("Not authenticated");
+    const resp = await fetch(BASE_URL + "/keys", { method: "GET", headers: headers() });
+    return resp.json();
+}
+
+/* ===== Panel interactions ===== */
+genBtn.addEventListener("click", async ()=>{
+    if(!isAuth()){ showStatus("Please login first", "error"); return; }
+    const name = (usernameInput.value || "User").trim();
+    const hwid = !!hwidLockInput.checked;
+    genBtn.disabled = true;
+    genBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+    try{
+        const data = await api_create_key(name, hwid);
+        if(data && data.success && data.key){
+            const key = data.key;
+            generatedKey.textContent = key;
+            keyUsername.textContent = data.data?.username || name;
+            keyHWID.textContent = data.data?.hwid ? data.data.hwid.slice(0,8) + "..." : "None";
+            keyResult.classList.remove("hidden");
+            addToHistory(key);
+            showStatus("✅ Key Generated Successfully!", "success");
+            await loadKeys();
+        } else {
+            showStatus("❌ Generation failed: " + (data?.message || "unknown"), "error");
+        }
+    }catch(err){
+        console.error(err);
+        showStatus("❌ Network/Server error", "error");
+    } finally {
+        genBtn.disabled = false;
+        genBtn.innerHTML = '<i class="fas fa-magic"></i> <span>Generate Key</span>';
+    }
+});
+
+copyBtn.addEventListener("click", async ()=>{
+    const k = generatedKey.textContent || "";
+    if(!k) return;
+    await navigator.clipboard.writeText(k);
+    showStatus("✅ Key copied to clipboard", "success");
+});
+
+/* History */
+function addToHistory(k){
+    keyHistory.unshift(k);
+    if(keyHistory.length > 5) keyHistory.pop();
+    renderHistory();
+}
+function renderHistory(){
+    keyHistoryList.innerHTML = "";
+    keyHistory.forEach(k=>{
+        const div = document.createElement("div");
+        div.className = "key-history-item";
+        div.innerHTML = `<span style="font-family:monospace">${k.slice(0,6)}...${k.slice(-4)}</span>
+            <button class="key-history-copy" style="border:none;background:transparent;color:var(--accent);cursor:pointer">Copy</button>`;
+        div.querySelector("button").addEventListener("click", async ()=>{
+            await navigator.clipboard.writeText(k);
+            showStatus("✅ Key copied from history", "success");
+        });
+        keyHistoryList.appendChild(div);
+    });
+}
+
+/* Load keys and update table */
+async function loadKeys(){
+    // prevent flood if not auth
+    if(!isAuth()) return;
+    try{
+        const json = await api_list_keys();
+        if(!json || !json.success){ keysData = {}; keysTableBody.innerHTML = '<tr><td colspan="5" class="loading">No keys found</td></tr>'; return; }
+        keysData = json.keys || {};
+        updateTable();
+    } catch(err){
+        console.error("loadKeys err", err);
+        keysTableBody.innerHTML = '<tr><td colspan="5" class="loading">Error loading keys</td></tr>';
+    }
+}
+
+function updateTable(){
+    const tbody = keysTableBody;
+    if(!keysData || Object.keys(keysData).length === 0){
+        tbody.innerHTML = '<tr><td colspan="5" class="loading">No keys found</td></tr>';
+        return;
+    }
+    tbody.innerHTML = "";
+    Object.entries(keysData).forEach(([key, keyData])=>{
+        const tr = document.createElement("tr");
+        const hwidText = keyData.hwid ? keyData.hwid.slice(0,8) + '...' : 'None';
+        const uses = (keyData.uses || 0) + '/' + (keyData.max_uses ?? '∞');
+        tr.innerHTML = `
+            <td style="font-family:monospace">${key.slice(0,8)}...<span style="display:none">${key}</span></td>
+            <td>${keyData.username || ''}</td>
+            <td>${hwidText}</td>
+            <td>${uses}</td>
+            <td><button class="del-btn">Delete</button></td>
+        `;
+        tr.querySelector(".del-btn").addEventListener("click", async ()=>{
+            if(!confirm("Delete this key?")) return;
+            try{
+                await api_delete_key(key);
+                showStatus("🗑️ Key deleted", "success");
+                await loadKeys();
+            }catch(e){
+                showStatus("❌ Delete failed", "error");
+            }
+        });
+        tbody.appendChild(tr);
+    });
+}
+
+/* auto refresh only when auth */
+let autoInterval = setInterval(()=>{
+    if(isAuth()) loadKeys();
+}, 5000);
+
+/* initial if already auth */
+if(isAuth()) loadKeys();
+
+/* Prevent network calls before login by checking isAuth in api wrappers above */
+
+/* Helpful: expose quick debug (only if logged in) */
+window._kx = { isAuth, setAuth, clearAuth, loadKeys };
+
+/* End script */
+</script>
+</body>
+</html>
