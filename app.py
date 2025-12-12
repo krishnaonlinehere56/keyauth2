@@ -1,4 +1,5 @@
 import os
+from datetime import datetime, timedelta
 from flask import Flask, request, jsonify, render_template, redirect, url_for, session
 from config import (
     FLASK_SECRET_KEY,
@@ -19,14 +20,12 @@ def get_client_ip():
 
 # ---------- (optional) login helper ----------
 def login_required():
-    # ab actual login system use nahi kar rahe
     return True
 
 
 # ---------- Auth routes ----------
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    # koi login.html nahi, direct home pe bhej do
     return redirect(url_for("home"))
 
 
@@ -39,11 +38,10 @@ def logout():
 # ---------- HTML route ----------
 @app.route("/", methods=["GET"])
 def home():
-    # seedha index.html render
     return render_template("index.html")
 
 
-# ---------- small auth helper (owner/secret/apiKey headers) ----------
+# ---------- small auth helper ----------
 def check_headers():
     h_owner = request.headers.get("X-Owner-Id")
     h_secret = request.headers.get("X-Secret")
@@ -67,10 +65,15 @@ def generate():
 
     data = request.get_json(silent=True) or {}
     username = data.get("username", "User")
-    plan = data.get("plan")
+    plan = data.get("plan", "basic")
     days = data.get("days")
+    
+    if days is None:
+        days = 7
+    days = int(days)
+    
     hwid_lock = bool(data.get("hwid_lock", False))
-    max_uses = data.get("max_uses")
+    max_uses = data.get("max_uses", 1)
 
     key, meta = storage.create_key(
         username=username,
@@ -79,21 +82,32 @@ def generate():
         hwid_lock=hwid_lock,
         max_uses=max_uses
     )
-    storage.add_log("generate", key, {"username": username, "plan": meta["plan"]})
+    
+    expiry_date = datetime.now() + timedelta(days=days)
+    
+    storage.add_log("generate", key, {
+        "username": username, 
+        "plan": plan,
+        "days": days,
+        "expires": expiry_date.isoformat()
+    })
 
     return jsonify({
         "success": True,
-        "message": "Key created",
+        "message": f"Key created for {days} days",
         "key": key,
-        "data": meta
+        "data": {
+            **meta,
+            "days": days,
+            "expires": expiry_date.strftime("%Y-%m-%d"),
+            "days_left": days
+        }
     })
 
 
 @app.route("/verify", methods=["POST"])
 def verify():
-    if not check_headers():
-        return jsonify({"success": False, "message": "Unauthorized"}), 401
-
+    # 👈 NO AUTH - Client direct call karega
     data = request.get_json(silent=True) or {}
     key = data.get("key")
     hwid = data.get("hwid")
@@ -105,15 +119,29 @@ def verify():
             "message": "key & hwid required"
         }), 400
 
+    # 👈 CLIENT PC KA HWID + IP CAPTURE
     client_ip = get_client_ip()
-    ok, status, msg, meta = storage.verify_key_logic(key, hwid, client_ip)
-    storage.add_log("verify", key, {"status": status, "ip": client_ip})
+    client_hwid = hwid
+    
+    ok, status, msg, meta = storage.verify_key_logic(key, client_hwid, client_ip)
+    
+    # 👈 HWID + IP LOG SAVE
+    storage.add_log("verify", key, {
+        "status": status, 
+        "ip": client_ip,
+        "hwid": client_hwid
+    })
 
+    # 👈 RESPONSE ME HWID + IP BHI BHEJO
     return jsonify({
         "success": ok,
         "status": status,
         "message": msg,
-        "data": meta
+        "data": {
+            **meta,
+            "client_ip": client_ip,
+            "client_hwid": client_hwid
+        }
     })
 
 
@@ -123,9 +151,26 @@ def list_keys():
         return jsonify({"success": False, "message": "Unauthorized"}), 401
 
     db = storage.load_db()
+    keys_with_expiry = []
+    
+    for key_data in db:
+        if 'expires' in key_data and key_data['expires']:
+            expiry = datetime.fromisoformat(key_data['expires'])
+            days_left = max(0, (expiry - datetime.now()).days)
+        else:
+            days_left = 0
+            
+        keys_with_expiry.append({
+            **key_data,
+            "days_left": days_left,
+            "last_ip": key_data.get("last_ip", "N/A"),      # 👈 SHOW LAST IP
+            "last_hwid": key_data.get("hwid", "N/A")        # 👈 SHOW LAST HWID
+        })
+    
     return jsonify({
         "success": True,
-        "keys": db
+        "keys": keys_with_expiry,
+        "total": len(keys_with_expiry)
     })
 
 
@@ -136,15 +181,18 @@ def ban():
 
     data = request.get_json(silent=True) or {}
     key = data.get("key")
-    banned = bool(data.get("banned", True))
+    banned = data.get("banned", True)
 
     if not key:
         return jsonify({"success": False, "message": "key required"}), 400
 
-    ok = storage.set_banned(key, banned, reason="Panel toggle")
-    storage.add_log("ban", key, {"banned": banned})
-
-    return jsonify({"success": ok})
+    ok = storage.set_banned(key, bool(banned), reason="DC Panel")
+    storage.add_log("ban", key, {"banned": bool(banned)})
+    
+    return jsonify({
+        "success": ok,
+        "message": "Key banned/unbanned" if ok else "Key not found"
+    })
 
 
 @app.route("/reset_hwid", methods=["POST"])
@@ -159,9 +207,12 @@ def reset_hwid():
         return jsonify({"success": False, "message": "key required"}), 400
 
     ok = storage.reset_hwid(key)
-    storage.add_log("reset_hwid", key, {})
-
-    return jsonify({"success": ok})
+    storage.add_log("reset_hwid", key, {"success": ok})
+    
+    return jsonify({
+        "success": ok,
+        "message": "HWID reset" if ok else "Key not found"
+    })
 
 
 @app.route("/delete", methods=["POST"])
@@ -176,9 +227,12 @@ def delete():
         return jsonify({"success": False, "message": "key required"}), 400
 
     ok = storage.delete_key(key)
-    storage.add_log("delete", key, {})
+    storage.add_log("delete", key, {"success": ok})
 
-    return jsonify({"success": ok})
+    return jsonify({
+        "success": ok,
+        "message": "Key deleted" if ok else "Key not found"
+    })
 
 
 @app.route("/logs", methods=["GET"])
