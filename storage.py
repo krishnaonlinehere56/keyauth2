@@ -52,10 +52,8 @@ def create_key(username="User", plan=None, days=None,
 
     plan = plan or DEFAULT_PLAN
     days = days if days is not None else DEFAULT_DAYS
-
-    # 👈 DC BOT: NO 10 LIMIT, exact days
     if max_uses is None:
-        max_uses = DEFAULT_MAX_USES  # Config se le
+        max_uses = DEFAULT_MAX_USES
 
     created = _now()
     expiry = created + timedelta(days=days)
@@ -64,15 +62,15 @@ def create_key(username="User", plan=None, days=None,
         "username": username,
         "plan": plan,
         "created": created.isoformat(),
-        "expiry": expiry.isoformat(),  # 👈 EXPIRES_FIELD match
+        "expiry": expiry.isoformat(),
         "hwid_lock": hwid_lock,
-        HWID_FIELD: None,              # 👈 Config field use
+        "hwid": None,
         "valid": True,
         "banned": False,
         "uses": 0,
         "max_uses": max_uses,
         "last_used": None,
-        IP_FIELD: None,                # 👈 Config field use (last_ip)
+        "last_ip": None,
         "ban_reason": None
     }
 
@@ -91,7 +89,7 @@ def set_banned(key, banned: bool, reason: str = None):
 def reset_hwid(key):
     data = load_db()
     if key in data:
-        data[key][HWID_FIELD] = None
+        data[key]["hwid"] = None
         data[key]["hwid_lock"] = False
         save_db(data)
         return True
@@ -105,7 +103,7 @@ def delete_key(key):
         return True
     return False
 
-# ---------- Verify core logic ----------
+# ---------- Verify core logic (SINGLE CLEAN VERSION) ----------
 def verify_key_logic(key, client_hwid: str, client_ip: str = None):
     data = load_db()
     if key not in data:
@@ -117,36 +115,41 @@ def verify_key_logic(key, client_hwid: str, client_ip: str = None):
     if not k.get("valid", True) or k.get("banned", False):
         return False, "banned", "Key banned/disabled", k
 
-    # expiry check
-    expiry = datetime.fromisoformat(k[EXPIRES_FIELD])  # 👈 Config field
-    if _now() > expiry:
-        k["valid"] = False
-        save_db(data)
-        return False, "expired", "Key expired", k
+    # ✅ FIXED: Handle both 'expiry' AND 'expires'
+    expiry_str = k.get('expiry') or k.get('expires')
+    if not expiry_str:
+        return False, "invalid", "No expiry date", k
+        
+    try:
+        expiry = datetime.fromisoformat(expiry_str)
+        if _now() > expiry:
+            k["valid"] = False
+            save_db(data)
+            return False, "expired", "Key expired", k
+    except:
+        return False, "invalid", "Invalid expiry format", k
 
     # max uses
-    if k.get("max_uses") is not None and k["uses"] >= k["max_uses"]:
+    if k.get("max_uses") is not None and k.get("uses", 0) >= k["max_uses"]:
         k["valid"] = False
         save_db(data)
         return False, "max_uses", "Maximum uses reached", k
 
     # HWID logic
     if k.get("hwid_lock", False):
-        if k.get(HWID_FIELD) is None:
-            # first bind
-            k[HWID_FIELD] = client_hwid
-        else:
-            if k[HWID_FIELD] != client_hwid:
-                save_db(data)
-                return False, "hwid_mismatch", "HWID does not match", k
+        if k.get("hwid") is None:
+            k["hwid"] = client_hwid
+        elif k["hwid"] != client_hwid:
+            save_db(data)
+            return False, "hwid_mismatch", "HWID does not match", k
 
-    # success → update uses + last_used + IP + HWID
-    k["uses"] += 1
+    # success → update
+    k["uses"] = k.get("uses", 0) + 1
     k["last_used"] = _now().isoformat()
-    if client_ip is not None:
-        k[IP_FIELD] = client_ip  # 👈 Config field
-    if client_hwid is not None:
-        k[HWID_FIELD] = client_hwid  # 👈 Always update HWID
+    if client_ip:
+        k["last_ip"] = client_ip
+    if client_hwid:
+        k["hwid"] = client_hwid
 
     save_db(data)
     return True, "success", "Key valid", k
@@ -158,11 +161,10 @@ def add_log(event_type, key=None, info=None):
         "time": _now().isoformat(),
         "event": event_type,
         "key": key,
-        "hwid": info.get("hwid") if info else None,  # 👈 HWID log
-        "ip": info.get("ip") if info else None,      # 👈 IP log
+        "hwid": info.get("hwid") if info else None,
+        "ip": info.get("ip") if info else None,
         "info": info or {}
     })
-    # Keep only last 1000 logs
     if len(logs) > 1000:
         logs = logs[-1000:]
     save_logs(logs)
